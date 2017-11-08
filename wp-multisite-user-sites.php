@@ -3,14 +3,14 @@
  * Plugin Name: Multisite User Site Manager
  * Description: Manage a users sites and roles on each site.
  * Version:     1.0.0a
- * Plugin URI:  
+ * Plugin URI:  https://github.com/RobertMeyerJr/wp-multisite-user-site-manager
  * Author:      Robert Meyer Jr
  * Author URI:  
  * Text Domain: multi-site user-management
  * Network:     true
 */
 
-$Multisite_User_Sites = new Multisite_User_Sites();
+$Multisite_User_Sites = Multisite_User_Sites::getInstance();
 
 class Multisite_User_Sites{
 	public function getInstance(){
