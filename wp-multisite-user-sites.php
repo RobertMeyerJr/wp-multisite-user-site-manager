@@ -13,7 +13,7 @@
 $Multisite_User_Sites = Multisite_User_Sites::getInstance();
 
 class Multisite_User_Sites{
-	public function getInstance(){
+	public static function getInstance(){
 		static $instance;
 		if( ! isset( $instance ) ) {
 			$instance = new self();
@@ -26,7 +26,7 @@ class Multisite_User_Sites{
 	}
 	
 	public function init(){
-		//Only show on Main site, and if user is a superadmin (via update_core cap)
+		//Only allow on Main site, and if user is a superadmin (via update_core cap)
 		if( is_main_site() && current_user_can('update_core') ){
 			add_action('edit_user_profile',			[$this,	'list_sites'], 1000);
 			add_action('edit_user_profile_update', 	[$this,	'update']);		
@@ -72,8 +72,7 @@ class Multisite_User_Sites{
 			<?php foreach($sites as $s) : ?>
 				<?php 
 					switch_to_blog( $s->blog_id );
-					$ud = get_userdata($user_id);		
-					#d($s);					
+					$ud = get_userdata($user_id);					
 				?>
 				<tr>
 					<td><?php echo $s->blog_id?></td>
